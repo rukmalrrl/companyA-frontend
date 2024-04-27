@@ -1,81 +1,83 @@
-import '../../styles/dashboard.css';
-import '../../styles/style.css';
-import { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import avatar from '../../assets/avatar.svg';
-import { SideNavigation, TopBar } from '../../components/sideComps/dashBoardComps';
+import "../../styles/dashboard.css";
+import "../../styles/style.css";
+import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import avatar from "../../assets/avatar.svg";
 import {
-    dashboardAdminData,
-} from './data/DashBoardData';
+  SideNavigation,
+  TopBar,
+} from "../../components/sideComps/dashBoardComps";
+import { dashboardAdminData } from "./data/DashBoardData";
 
-import { DashboardView, ViewStocks } from './SideBarPages';
-import NotFound from '../generalManagementSystem/NotFound';
-
-
-
+import {
+  DashboardView,
+  Employee,
+  Attendance,
+  MarkAttendance,
+  WorkTime,
+  Leave,
+} from "./SideBarPages";
+import NotFound from "../generalManagementSystem/NotFound";
 
 export default function Dashboard() {
+  const addJs = () => {
+    const allSideMenu = document.querySelectorAll(
+      "#sidebar .side-menu.top li a"
+    );
 
-    const addJs = () => {
-        const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+    allSideMenu.forEach((item) => {
+      const li = item.parentElement;
 
-        allSideMenu.forEach(item => {
-            const li = item.parentElement;
-
-            item.addEventListener('click', function () {
-                allSideMenu.forEach(i => {
-                    i.parentElement.classList.remove('active');
-                })
-                li.classList.add('active');
-            })
+      item.addEventListener("click", function () {
+        allSideMenu.forEach((i) => {
+          i.parentElement.classList.remove("active");
         });
+        li.classList.add("active");
+      });
+    });
 
-        // TOGGLE SIDEBAR
-        const menuBar = document.querySelector('#content nav .bx.bx-menu');
-        const sidebar = document.getElementById('sidebar');
+    // TOGGLE SIDEBAR
+    const menuBar = document.querySelector("#content nav .bx.bx-menu");
+    const sidebar = document.getElementById("sidebar");
 
-        menuBar.addEventListener('click', function () {
-            sidebar.classList.toggle('hideSidebar');
-        })
+    menuBar.addEventListener("click", function () {
+      sidebar.classList.toggle("hideSidebar");
+    });
 
+    const switchMode = document.getElementById("switch-mode");
+    const wrapper = document.getElementById("dashboardWrapper");
 
-        const switchMode = document.getElementById('switch-mode');
-        const wrapper = document.getElementById('dashboardWrapper');
+    switchMode.addEventListener("change", function () {
+      if (this.checked) {
+        wrapper.classList.add("dark");
+      } else {
+        wrapper.classList.remove("dark");
+      }
+    });
+  };
 
+  useEffect(() => {
+    addJs();
+  }, []);
 
-        switchMode.addEventListener('change', function () {
-            if (this.checked) {
-                wrapper.classList.add('dark');
-            } else {
-                wrapper.classList.remove('dark');
-            }
-        })
-    }
+  return (
+    <>
+      <div id="dashboardWrapper">
+        <SideNavigation data={dashboardAdminData} />
 
-    useEffect(() => {
-        addJs()
-    }, [])
+        <section id="content" style={{ height: "100vh" }}>
+          <TopBar avatar={avatar} />
 
-
-
-
-    return (
-        <>
-            <div id="dashboardWrapper">
-
-                <SideNavigation data={dashboardAdminData} />
-
-                <section id="content" style={{height: '100vh'}}>
-                    <TopBar avatar={avatar} />
-
-                    <Routes>
-                        <Route path="/dashboard" element={<DashboardView />} />
-                        <Route path="/view-stocks" element={<ViewStocks />} />
-                    </Routes>
-                </section>
-                
-            </div>
-
-        </>
-    )
+          <Routes>
+            <Route path="/dashboard" element={<DashboardView />} />
+            <Route path="/employee" element={<Employee />} />
+            <Route path="/attendance" element={<Attendance />} />
+            <Route path="/mark-attendance" element={<MarkAttendance />} />
+            <Route path="/work-time" element={<WorkTime />} />
+            <Route path="/leave" element={<Leave />} />
+          </Routes>
+        </section>
+      </div>
+    </>
+  );
 }
