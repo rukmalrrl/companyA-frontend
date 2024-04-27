@@ -2,6 +2,7 @@ import React from "react";
 import CardComp from "../../components/sideComps/CardComp";
 import TableComp from "../../components/sideComps/TableComp";
 import avatar from "../../assets/avatar.svg";
+import ButtonBaseDemo from "./Buttons";
 
 export function ViewStocks(props) {
   const tableData = {
@@ -85,14 +86,7 @@ export function Employee(props) {
         </div>
       </main>
       <body>
-        <button
-          type="button"
-          data-mdb-button-init
-          data-mdb-ripple-init
-          class="btn btn-secondary btn-square-xl"
-        >
-          Employee
-        </button>
+        <ButtonBaseDemo />
       </body>
     </>
   );
