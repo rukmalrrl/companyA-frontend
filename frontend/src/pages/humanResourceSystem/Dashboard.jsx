@@ -20,6 +20,8 @@ import {
   AddEmployee,
   UpdateEmployee,
   DeleteEmployee,
+  SearchOneEmployee,
+  SearchAllEmployee,
 } from "./SideBarPages";
 import NotFound from "../generalManagementSystem/NotFound";
 
@@ -83,6 +85,8 @@ export default function Dashboard() {
             <Route path="/add-employee" element={<AddEmployee />} />
             <Route path="/update-employee" element={<UpdateEmployee />} />
             <Route path="/delete-employee" element={<DeleteEmployee />} />
+            <Route path="/one-employee" element={<SearchOneEmployee />} />
+            <Route path="/all-employee" element={<SearchAllEmployee />} />
           </Routes>
         </section>
       </div>
