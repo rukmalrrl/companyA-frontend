@@ -16,6 +16,10 @@ import {
   MarkAttendance,
   WorkTime,
   Leave,
+  Search,
+  AddEmployee,
+  UpdateEmployee,
+  DeleteEmployee,
 } from "./SideBarPages";
 import NotFound from "../generalManagementSystem/NotFound";
 
@@ -75,6 +79,10 @@ export default function Dashboard() {
             <Route path="/mark-attendance" element={<MarkAttendance />} />
             <Route path="/work-time" element={<WorkTime />} />
             <Route path="/leave" element={<Leave />} />
+            <Route path="/search-employee" element={<Search />} />
+            <Route path="/add-employee" element={<AddEmployee />} />
+            <Route path="/update-employee" element={<UpdateEmployee />} />
+            <Route path="/delete-employee" element={<DeleteEmployee />} />
           </Routes>
         </section>
       </div>
