@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import CardComp from "../../components/sideComps/CardComp";
 import TableComp from "../../components/sideComps/TableComp";
 import avatar from "../../assets/avatar.svg";
-
+import "./HRStyles.css";
+import Button1 from "./Button1";
+import SearchOne from "./SearchOne";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import BasicDatePicker from "./DateInput";
 
 export function ViewStocks(props) {
   const tableData = {
@@ -183,7 +186,11 @@ export function Attendance(props) {
           </div>
         </div>
       </main>
-      <body></body>
+      <body>
+        <>
+          <Button1 />
+        </>
+      </body>
     </>
   );
 }
@@ -216,19 +223,56 @@ export function WorkTime(props) {
       <body>
         <>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <label style={{ marginLeft: "200px", marginRight: "20px" }}>
+            <label
+              style={{
+                width: "200px",
+                marginRight: "80px",
+                fontSize: "20px",
+                textAlign: "right",
+              }}
+            >
               ID :
             </label>
             <input type="text" placeholder="Enter ID" id="id" name="id" />
-            <br />
-            <br />
-            <br />
-            <br />
           </div>
-          <div>
-            <label style={{ marginLeft: "200px", marginRight: "20px" }}>
+          <div
+            style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
+          >
+            <label
+              style={{
+                width: "200px",
+                marginRight: "80px",
+                fontSize: "20px",
+                textAlign: "right",
+              }}
+            >
               Start Date :
             </label>
+            <BasicDatePicker />
+          </div>
+          <div
+            style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
+          >
+            <label
+              style={{
+                width: "200px",
+                marginRight: "80px",
+                fontSize: "20px",
+                textAlign: "right",
+              }}
+            >
+              End Date :
+            </label>
+            <BasicDatePicker />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "20px",
+            }}
+          >
+            <button style={{ fontSize: "20px" }}>Search</button>
           </div>
         </>
       </body>
@@ -246,12 +290,108 @@ export function Leave(props) {
           </div>
         </div>
       </main>
-      <body></body>
+      <body>
+        <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "10px",
+              }}
+            >
+              <label
+                style={{
+                  width: "100px",
+                  marginRight: "40px",
+                  fontSize: "20px",
+                  textAlign: "right",
+                }}
+              >
+                ID:
+              </label>
+              <input type="text" placeholder="Enter ID" id="id" name="id" />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "10px",
+              }}
+            >
+              <label
+                style={{
+                  width: "100px",
+                  marginRight: "40px",
+                  fontSize: "20px",
+                  textAlign: "right",
+                }}
+              >
+                Year:
+              </label>
+              <input
+                type="text"
+                placeholder="Enter Year"
+                id="year"
+                name="year"
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "10px",
+              }}
+            >
+              <label
+                style={{
+                  width: "100px",
+                  marginRight: "40px",
+                  fontSize: "20px",
+                  textAlign: "right",
+                }}
+              >
+                Month:
+              </label>
+              <input
+                type="text"
+                placeholder="Enter Month"
+                id="month"
+                name="month"
+              />
+            </div>
+            {/* Search button aligned with other elements */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "10px",
+              }}
+            >
+              <button style={{ fontSize: "20px", marginLeft: "110px" }}>
+                Search
+              </button>
+            </div>
+          </div>
+        </>
+      </body>
     </>
   );
 }
 
 export function Search(props) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission here
+    // You can access form data using event.target
+  };
+
   return (
     <>
       <main>
@@ -261,7 +401,59 @@ export function Search(props) {
           </div>
         </div>
       </main>
-      <body></body>
+      <body>
+        <>
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "10px",
+              }}
+            >
+              <label
+                htmlFor="searchInput"
+                style={{ marginRight: "100px", fontSize: "24px" }}
+              >
+                ID
+              </label>
+              <input
+                type="text"
+                id="searchInput"
+                name="searchInput"
+                placeholder="Enter ID"
+              />
+            </div>
+            <button type="submit">Search</button>
+          </form>
+        </>
+      </body>
+    </>
+  );
+}
+export function SearchOneEmployee(props) {
+  return (
+    <>
+      <main>
+        <div className="head-title">
+          <div className="left">
+            <h1>One Employee</h1>
+          </div>
+        </div>
+      </main>
+      <body>
+        <>
+          <Button1 />
+          <SearchOne />
+        </>
+      </body>
     </>
   );
 }
@@ -305,6 +497,25 @@ export function DeleteEmployee(props) {
         </div>
       </main>
       <body></body>
+    </>
+  );
+}
+
+export function SearchAllEmployee(props) {
+  return (
+    <>
+      <main>
+        <div className="head-title">
+          <div className="left">
+            <h1>All Employee</h1>
+          </div>
+        </div>
+      </main>
+      <body>
+        <>
+          <Button1 />
+        </>
+      </body>
     </>
   );
 }
