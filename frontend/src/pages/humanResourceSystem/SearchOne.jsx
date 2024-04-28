@@ -1,20 +1,48 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import * as reqSend from "../../global/reqSender.jsx";
 
 export default function SearchOne() {
-  const [data, setDate] = useState([]);
+  const [val, setVal] = useState("");
+  const [attendanceData, setAttendanceData] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("https://reqres.in/api/users?page=2")
-      .then((res) => setDate(res.data.data))
-      .catch((err) => console.error(err));
-  }, []);
+  const change = (event) => {
+    setVal(event.target.value);
+  };
+
+  const searchClick = () => {
+    reqSend.defaultReq(
+      "GET",
+      `Attendance/GetWeeklyAttendance/${val}`,
+      {},
+      (response) => {
+        if (response.status === 200 && response.data) {
+          const formattedData = response.data.map((item) => ({
+            ...item,
+            signInTime: formatTime(item.signInTime),
+            signOutTime: formatTime(item.signOutTime),
+          }));
+          setAttendanceData(formattedData);
+        } else {
+          console.error("Invalid response format:", response);
+        }
+      },
+      (error) => {
+        console.error("API request failed:", error);
+      }
+    );
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    searchClick();
+  };
+
+  // Function to format time to HH:mm format
+  const formatTime = (timeStr) => {
+    const date = new Date(timeStr);
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
   };
 
   return (
@@ -41,9 +69,10 @@ export default function SearchOne() {
               htmlFor="searchInput"
               style={{ marginRight: "100px", fontSize: "24px" }}
             >
-              ID
+              ID :
             </label>
             <input
+              onChange={change}
               type="text"
               id="searchInput"
               name="searchInput"
@@ -55,6 +84,30 @@ export default function SearchOne() {
           </button>
         </form>
       </div>
+      <br />
+      <br />
+
+      <table
+        style={{ borderCollapse: "collapse", width: "80%", margin: "auto" }}
+      >
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Sign In Time</th>
+            <th>Sign Out Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {attendanceData.map((item) => (
+            <tr key={item.id}>
+              <td>{item.date}</td>
+              <td>{item.signInTime}</td>
+              <td>{item.signOutTime}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <br />
     </>
   );
 }
