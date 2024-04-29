@@ -9,6 +9,7 @@ import BasicDatePicker from "./DateInput";
 import SearchAll from "./SearchAll";
 import Button2 from "./Button2";
 import EmployeeDetailForm from "./EmployeeDetailForm";
+import DashboardCards from "./DashboardCards";
 
 export function ViewStocks(props) {
   const tableData = {
@@ -49,20 +50,14 @@ export function DashboardView(props) {
     {
       image: avatar,
       altText: "Avatar 1",
-      count: 5,
-      name: "John Doe",
+      count: 125,
+      name: "All Employees",
     },
     {
       image: avatar,
       altText: "Avatar 2",
-      count: 3,
-      name: "Jane Smith",
-    },
-    {
-      image: avatar,
-      altText: "Avatar 3",
-      count: 7,
-      name: "Bob Johnson",
+      count: 109,
+      name: "Today Attendance",
     },
   ];
 
@@ -74,7 +69,7 @@ export function DashboardView(props) {
             <h1>Dashboard</h1>
           </div>
 
-          <CardComp data={dataList} />
+          <DashboardCards data={dataList} />
         </div>
       </main>
     </>
@@ -118,6 +113,7 @@ export function MarkAttendance(props) {
           </div>
         </div>
       </main>
+      <body></body>
     </>
   );
 }
