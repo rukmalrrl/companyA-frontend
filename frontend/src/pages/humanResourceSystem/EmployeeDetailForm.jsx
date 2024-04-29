@@ -112,7 +112,7 @@ export default function EmployeeDetailForm() {
         </div>
         <br />
 
-        <button type="submit" style={{ fontSize: "25px", marginLeft: "50%" }}>
+          {" "}
           Submit
         </button>
       </form>
