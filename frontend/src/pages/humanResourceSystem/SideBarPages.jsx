@@ -18,7 +18,7 @@ export function ViewStocks(props) {
   const tableData = {
     name: "Sample Table",
     heading: ["Column 1", "Column 2", "Column 3"],
-    body: [
+    div: [
       <tr key="row1">
         <td>Data 1</td>
         <td>Data 2</td>
@@ -97,11 +97,11 @@ export function Attendance(props) {
           </div>
         </div>
       </main>
-      <body>
+      <div>
         <>
           <Button1 />
         </>
-      </body>
+      </div>
     </>
   );
 }
@@ -196,7 +196,7 @@ export function MarkAttendance(props) {
           </div>
         </div>
       </main>
-      <body>
+      <div>
         <div class="signin-container">
           <div class="signin-box">
             <h2>Sign In</h2>
@@ -239,7 +239,7 @@ export function MarkAttendance(props) {
           id="attendance"
           style={{ textAlign: "center", marginTop: "40px" }}
         ></h3>
-      </body>
+      </div>
     </>
   );
 }
@@ -293,11 +293,12 @@ export function WorkTime(props) {
       // Fetch work hours data
       reqSend.defaultReq(
         "GET",
-        `/PayRoll/WorkTime/WorkHours?employeeId=${val}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`,
+        `PayRoll/WorkTime/WorkHours?employeeId=${val}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`,
         {},
         async (workHoursResponse) => {
           if (workHoursResponse.status === 200 && workHoursResponse.data) {
             const workHoursData = workHoursResponse.data;
+            console.log(workHoursResponse); //
             setWorkHoursData(workHoursData);
 
             // Calculate total worked time
@@ -315,7 +316,7 @@ export function WorkTime(props) {
       // Fetch OT hours data
       reqSend.defaultReq(
         "GET",
-        `/PayRoll/WorkTime/WorkOtHours?employeeId=${val}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`,
+        `PayRoll/WorkTime/WorkOtHours?employeeId=${val}&startDate=${formattedStartDate}&endDate=${formattedEndDate}`,
         {},
         (otHoursResponse) => {
           if (otHoursResponse.status === 200 && otHoursResponse.data) {
@@ -348,7 +349,7 @@ export function WorkTime(props) {
           </div>
         </div>
       </main>
-      <body>
+      <div>
         <>
           <form style={{ alignItems: "center" }} onSubmit={handleSubmit}>
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -417,7 +418,7 @@ export function WorkTime(props) {
             </div>
           </form>
         </>
-      </body>
+      </div>
       <footer>{totalWorkedTime && <p>{totalWorkedTime}</p>}</footer>
     </>
   );
@@ -444,7 +445,7 @@ export function Leave(props) {
   const searchClick = () => {
     reqSend.defaultReq(
       "GET",
-      `/Leave/Balance?employeeId=${val}&year=${year}&month=${month}`,
+      `Leave/Balance?employeeId=${val}&year=${year}&month=${month}`,
       {},
       (response) => {
         if (response.status === 200 && response.data) {
@@ -472,7 +473,7 @@ export function Leave(props) {
           </div>
         </div>
       </main>
-      <body>
+      <div>
         <>
           <form onSubmit={handleSubmit}>
             <div
@@ -566,8 +567,25 @@ export function Leave(props) {
                 }}
               >
                 <button
-                  style={{ fontSize: "20px", marginLeft: "110px" }}
+                  style={{
+                    fontSize: "20px",
+                    marginLeft: "110px",
+                    padding: "10px 20px",
+                    backgroundColor: "#4CAF50",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+                    transition: "0.3s",
+                  }}
                   onClick={searchClick}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#45a049";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#4CAF50";
+                  }}
                 >
                   Search
                 </button>
@@ -581,7 +599,7 @@ export function Leave(props) {
             </div>
           )}
         </>
-      </body>
+      </div>
     </>
   );
 }
@@ -611,13 +629,13 @@ export function UpdateEmployee(props) {
           </div>
         </div>
       </main>
-      <body>
+      <div>
         <>
           <br />
           <br />
           <UpdateDetailsForm />
         </>
-      </body>
+      </div>
     </>
   );
 }
@@ -662,6 +680,7 @@ export function DeleteEmployee(props) {
       (response) => {
         if (response.status === 200 && response.data) {
           console.log(response.data);
+
           window.location.reload();
         } else {
           console.error("Invalid response format:", response);
@@ -687,7 +706,7 @@ export function DeleteEmployee(props) {
           </div>
         </div>
       </main>
-      <body>
+      <div>
         <form
           style={{
             display: "flex",
@@ -753,7 +772,7 @@ export function DeleteEmployee(props) {
             </form>
           </div>
         )}
-      </body>
+      </div>
     </>
   );
 }
@@ -768,14 +787,14 @@ export function SearchAllEmployee(props) {
           </div>
         </div>
       </main>
-      <body>
+      <div>
         <>
           <Button1 />
           <br />
           <br />
           <SearchAll />
         </>
-      </body>
+      </div>
     </>
   );
 }
@@ -789,12 +808,12 @@ export function SearchOneEmployee(props) {
           </div>
         </div>
       </main>
-      <body>
+      <div>
         <>
           <Button1 />
           <SearchOne />
         </>
-      </body>
+      </div>
     </>
   );
 }
@@ -841,7 +860,7 @@ export function Search(props) {
           </div>
         </div>
       </main>
-      <body>
+      <div>
         <form
           onSubmit={handleSubmit}
           style={{
@@ -871,7 +890,27 @@ export function Search(props) {
               onChange={change}
             />
           </div>
-          <button type="submit" style={{ fontSize: "25px" }}>
+          <button
+            type="submit"
+            style={{
+              fontSize: "25px",
+              padding: "10px 20px",
+              backgroundColor: "#4CAF50",
+              color: "white",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+              transition: "0.3s",
+            }}
+            onClick={searchClick}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "#45a049";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "#4CAF50";
+            }}
+          >
             Search
           </button>
         </form>
@@ -895,7 +934,7 @@ export function Search(props) {
             </form>
           </div>
         )}
-      </body>
+      </div>
     </>
   );
 }

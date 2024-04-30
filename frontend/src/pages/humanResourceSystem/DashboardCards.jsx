@@ -10,7 +10,7 @@ const CardComp = ({ data }) => {
   return (
     <Grid container spacing={2}>
       {data.map((item, index) => (
-        <Grid key={index} item xs={12} sm={6} md={4} lg={6} xl={2}>
+        <Grid key={index} item xs={12} sm={6} md={4} lg={6} xl={6}>
           {" "}
           {/* Adjust the grid size according to your layout */}
           <Box boxShadow={3}>

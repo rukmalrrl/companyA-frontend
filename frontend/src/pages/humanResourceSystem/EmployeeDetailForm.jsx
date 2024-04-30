@@ -41,14 +41,15 @@ export default function EmployeeDetailForm() {
       const response = await reqSend.defaultReq(
         "POST",
         "Employee/Create",
-        formData
+        formData,
+        (response) => {
+          if (response.status === 200) {
+            console.log("Employee created successfully");
+          } else {
+            console.error("Error creating employee:", response);
+          }
+        }
       );
-      console.log(response);
-      if (response.status && response === 200) {
-        console.log("Employee created successfully");
-      } else {
-        console.error("Error creating employee:", response);
-      }
     } catch (error) {
       console.error("Error creating employee:", error);
     }
@@ -86,7 +87,6 @@ export default function EmployeeDetailForm() {
             type="text"
             id="lastName"
             name="lastName"
-            value={formData.lastName}
             onChange={handleChange}
           />
         </div>
