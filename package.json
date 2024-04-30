@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@mui/lab": "^5.0.0-alpha.170"
+    "@mui/lab": "^5.0.0-alpha.170",
+    "cors": "^2.8.5"
   }
 }
