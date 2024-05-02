@@ -79,7 +79,7 @@ export default function SearchOne() {
               placeholder="Enter ID"
             />
           </div>
-          <button type="submit" style={{ fontSize: "25px" }}>
+          <button type="submit" className="button">
             Search
           </button>
         </form>
