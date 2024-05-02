@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import * as reqSend from "../../global/reqSender.jsx";
+import { Interface1 } from "./SideBarPages.jsx";
 
 export default function EmployeeDetailForm() {
   const [formData, setFormData] = useState({
@@ -44,7 +45,7 @@ export default function EmployeeDetailForm() {
         formData,
         (response) => {
           if (response.status === 200) {
-            console.log("Employee created successfully");
+            window.location.replace("/humanResource-management/interface1");
           } else {
             console.error("Error creating employee:", response);
           }
@@ -263,7 +264,28 @@ export default function EmployeeDetailForm() {
           />
         </div>
 
-        <button type="submit" style={{ fontSize: "25px", marginLeft: "46%" }}>
+        <button
+          type="submit"
+          style={{
+            fontSize: "25px",
+            marginLeft: "46%",
+            padding: "10px 20px",
+            backgroundColor: "#4CAF50",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+            transition: "0.3s",
+          }}
+          onClick={handleSubmit}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "#45a049";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "#4CAF50";
+          }}
+        >
           Submit
         </button>
       </form>
