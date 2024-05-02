@@ -162,7 +162,6 @@ export function MarkAttendance(props) {
       (response) => {
         if (response.status === 200 && response.data) {
           setSignOutData(response.data);
-          console.log("Attendance marked");
           var element = document.getElementById("attendance");
           var stringToPass = "Sign Out Successful!";
           element.innerText = stringToPass;
@@ -197,40 +196,40 @@ export function MarkAttendance(props) {
         </div>
       </main>
       <div>
-        <div class="signin-container">
-          <div class="signin-box">
+        <div className="signin-container">
+          <div className="signin-box">
             <h2>Sign In</h2>
             <div>
-              <label class="input-label" for="id">
+              <label className="input-label" htmlFor="id">
                 ID:
               </label>
               <input
-                class="input-field"
+                className="input-field"
                 type="text"
                 id="id"
                 name="id"
                 onChange={change1}
               />
             </div>
-            <button class="signin-button" onClick={handleSubmit1}>
+            <button className="signin-button" onClick={handleSubmit1}>
               Enter
             </button>
           </div>
-          <div class="signin-box">
+          <div className="signin-box">
             <h2>Sign Out</h2>
             <div>
-              <label class="input-label" for="id2">
+              <label className="input-label" htmlFor="id2">
                 ID:
               </label>
               <input
-                class="input-field"
+                className="input-field"
                 type="text"
                 id="id2"
                 name="id2"
                 onChange={change2}
               />
             </div>
-            <button class="signin-button" onClick={handleSubmit2}>
+            <button className="signin-button" onClick={handleSubmit2}>
               Enter
             </button>
           </div>
@@ -351,70 +350,100 @@ export function WorkTime(props) {
       </main>
       <div>
         <>
-          <form style={{ alignItems: "center" }} onSubmit={handleSubmit}>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <label
-                style={{
-                  width: "100px",
-                  marginRight: "10px",
-                  fontSize: "20px",
-                }}
-              >
-                ID:
-              </label>
-              <input
-                type="text"
-                placeholder="Enter ID"
-                value={val}
-                onChange={change1}
-              />
-            </div>
+          <form onSubmit={handleSubmit}>
             <div
               style={{
                 display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
-                marginTop: "20px",
               }}
             >
-              <label
+              <div
                 style={{
-                  width: "100px",
-                  marginRight: "10px",
-                  fontSize: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "10px",
                 }}
               >
-                Start Date:
-              </label>
-              <input type="date" value={startDate} onChange={change2} />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginTop: "20px",
-              }}
-            >
-              <label
+                <label
+                  style={{
+                    width: "100px",
+                    marginRight: "100px",
+                    fontSize: "20px",
+                    textAlign: "right",
+                  }}
+                >
+                  ID:
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter ID"
+                  id="id"
+                  name="id"
+                  onChange={change1}
+                />
+              </div>
+              <div
                 style={{
-                  width: "100px",
-                  marginRight: "10px",
-                  fontSize: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "10px",
                 }}
               >
-                End Date:
-              </label>
-              <input type="date" value={endDate} onChange={change3} />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "20px",
-              }}
-            >
-              <button style={{ fontSize: "20px" }} onClick={searchClick}>
-                Search
-              </button>
+                <label
+                  style={{
+                    width: "100px",
+                    marginRight: "40px",
+                    fontSize: "20px",
+                  }}
+                >
+                  Start Date:
+                </label>
+                <input
+                  type="date"
+                  placeholder="Enter Year"
+                  id="year"
+                  name="year"
+                  onChange={change2}
+                />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                <label
+                  style={{
+                    width: "100px",
+                    marginRight: "40px",
+                    fontSize: "20px",
+                    textAlign: "left",
+                  }}
+                >
+                  End Date:
+                </label>
+                <input
+                  type="date"
+                  placeholder="Enter Month"
+                  id="month"
+                  name="month"
+                  onChange={change3}
+                />
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                <button className="button" onClick={searchClick}>
+                  Search
+                </button>
+              </div>
             </div>
           </form>
         </>
@@ -566,32 +595,13 @@ export function Leave(props) {
                   marginBottom: "10px",
                 }}
               >
-                <button
-                  style={{
-                    fontSize: "20px",
-                    marginLeft: "110px",
-                    padding: "10px 20px",
-                    backgroundColor: "#4CAF50",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                    boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
-                    transition: "0.3s",
-                  }}
-                  onClick={searchClick}
-                  onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = "#45a049";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = "#4CAF50";
-                  }}
-                >
+                <button className="button" onClick={searchClick}>
                   Search
                 </button>
               </div>
             </div>
           </form>
+
           {/* Display leave balance if employeeData is defined */}
           {employeeData && (
             <div style={{ textAlign: "center" }}>
@@ -679,9 +689,7 @@ export function DeleteEmployee(props) {
       {},
       (response) => {
         if (response.status === 200 && response.data) {
-          console.log(response.data);
-
-          window.location.reload();
+          window.location.replace("/humanResource-management/interface3");
         } else {
           console.error("Invalid response format:", response);
         }
@@ -735,11 +743,12 @@ export function DeleteEmployee(props) {
               onChange={change}
             />
           </div>
-          <div>
+          <div style={{ display: "flex", marginRight: "60px" }}>
             <button
               type="submit"
               style={{ fontSize: "25px" }}
               onClick={handleSubmit}
+              className="button"
             >
               Search
             </button>
@@ -747,6 +756,7 @@ export function DeleteEmployee(props) {
               type="submit"
               style={{ fontSize: "25px" }}
               onClick={deleteSubmit}
+              className="button"
             >
               Delete
             </button>
@@ -756,7 +766,7 @@ export function DeleteEmployee(props) {
         {employeeData && (
           <div style={{ marginTop: "20px" }}>
             <h2>Employee Details</h2>
-            <form class="form-detail">
+            <form className="form-detail">
               {Object.entries(employeeData).map(([key, value]) => (
                 <div key={key} style={{ marginBottom: "10px" }}>
                   <label htmlFor={key}>{key} :</label>
@@ -834,14 +844,17 @@ export function Search(props) {
       (response) => {
         if (response.status === 200 && response.data) {
           setEmployeeData(response.data);
+        } else if (response.status === 404) {
+          location.reload();
         } else {
           window.location.reload();
           console.error("Invalid response format:", response);
+          location.reload();
         }
       },
       (error) => {
         console.error("API request failed:", error);
-        window.location.reload();
+        location.reload();
       }
     );
   };
@@ -888,6 +901,7 @@ export function Search(props) {
               name="searchInput"
               placeholder="Enter ID"
               onChange={change}
+              value={val}
             />
           </div>
           <button
@@ -918,7 +932,7 @@ export function Search(props) {
         {employeeData && (
           <div style={{ marginTop: "20px" }}>
             <h2>Employee Details</h2>
-            <form class="form-detail">
+            <form className="form-detail">
               {Object.entries(employeeData).map(([key, value]) => (
                 <div key={key} style={{ marginBottom: "10px" }}>
                   <label htmlFor={key}>{key} :</label>
@@ -936,5 +950,34 @@ export function Search(props) {
         )}
       </div>
     </>
+  );
+}
+
+export function Interface1(props) {
+  //for add Employee method
+  return (
+    <div className="container">
+      <h2 className="feedbackHeading" id="interface">
+        Employee Created Successfully
+      </h2>
+    </div>
+  );
+}
+
+export function Interface2(props) {
+  //for Update method
+  return (
+    <div className="container">
+      <h2 className="feedbackHeading">Employee Details Updated Successfully</h2>
+    </div>
+  );
+}
+
+export function Interface3(props) {
+  //for delete Employee method
+  return (
+    <div className="container">
+      <h2 className="feedbackHeading">Employee Removed Successfully</h2>
+    </div>
   );
 }

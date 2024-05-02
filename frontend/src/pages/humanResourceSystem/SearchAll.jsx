@@ -19,6 +19,7 @@ export default function SearchAll() {
         (response) => {
           if (response.status === 200 && response.data) {
             setAttendanceData(response.data);
+            //document.getElementById("error").innerHTML = "Employee Not Found";
           } else {
             console.error("Invalid response format:", response);
           }
@@ -27,8 +28,6 @@ export default function SearchAll() {
           console.error("API request failed:", error);
         }
       );
-    } else {
-      console.error("Please select a date");
     }
   };
 
@@ -49,12 +48,12 @@ export default function SearchAll() {
               type="date"
               value={selectedDate}
               onChange={handleDateChange}
-              style={{ marginRight: "10px" }}
+              style={{ marginLeft: "40px" }}
             />
             <br />
             <br />
           </div>
-          <button type="submit" style={{ fontSize: "20px" }}>
+          <button type="submit" className="button">
             Search
           </button>
         </form>

@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 export default function Button2() {
   const buttonStyle = {
-    width: "230px",
-    height: "230px",
+    width: "280px",
+    height: "260px",
     position: "relative",
-    border: "1px solid #000",
+    border: "1px solid #FFFFFF",
   };
 
   const imageStyle = {
@@ -34,7 +34,7 @@ export default function Button2() {
           </div>
         </div>
       </main>
-      <body>
+      <div>
         <>
           <Link to="/humanResource-management/search-employee">
             <button style={buttonStyle}>
@@ -93,7 +93,7 @@ export default function Button2() {
             </button>
           </Link>
         </>
-      </body>
+      </div>
     </>
   );
 }
